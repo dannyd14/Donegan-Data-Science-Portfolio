@@ -1,3 +1,3 @@
-##Streamlit App
+## Streamlit App
 This is a basic streamlit app that works to allow a user to learn more about different penguin species by filtering the data based on a few different factors. Users can examine information about the penguins filtering on the island in which they live, what type of species they are, and also their body mass. To use this app, one should run the code using the streamlit run function, followed by the relative path of the file (i.e streamlit run basic-streamlit-app/main.py). While using the app, you can use the tab filters to choose the species and island variables, and the slider filter to show certain ranges of body masses. 
 
