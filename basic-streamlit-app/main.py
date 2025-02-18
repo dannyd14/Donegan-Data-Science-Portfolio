@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df = pd.read_csv("basic-streamlit-app/data/penguins.csv")  # Ensure the "data" folder exists with the CSV file
+df = pd.read_csv("Donegan-Data-Science-Portfolio/basic-streamlit-app/data/penguins.csv")  # Ensure the "data" folder exists with the CSV file
 
 st.title("Penguins Dataset Exploration")
 
