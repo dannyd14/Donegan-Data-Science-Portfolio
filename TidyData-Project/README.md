@@ -18,6 +18,7 @@ For this project, I cleaned a dataset with information about the Federal Researc
 ## References
 
 Here are some helpful links for tidying data
+
 [Pandas Cheat Sheet](Pandas_Cheat_Sheet.pdf)
 
 [Hadley Wickman Tidy Data](tidy-data.pdf)
