@@ -19,8 +19,15 @@ For this project, I cleaned a dataset with information about the Federal Researc
 
 Here are some helpful links for tidying data
 [Pandas Cheat Sheet](Pandas_Cheat_Sheet.pdf)
+
 [Hadley Wickman Tidy Data](tidy-data.pdf)
 
 ## Cleaned Visualizations
 
+![](<Screen Shot 2025-03-17 at 9.43.18 PM.png>)
 
+![](<Screen Shot 2025-03-17 at 9.43.41 PM.png>)
+
+![](<Screen Shot 2025-03-17 at 9.43.59 PM.png>)!
+
+[](<Screen Shot 2025-03-17 at 9.44.12 PM.png>)
