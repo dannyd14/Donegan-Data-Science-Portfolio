@@ -31,5 +31,14 @@ This page works to showcase the projects that I have completed, while also displ
 ![](<TidyData-Project/Screen Shot 2025-03-17 at 9.43.41 PM.png>)
 
 
+## Streamlit Machine Learning App
+
+**Description:** The Machine Learning Application project explores the many capabilities of streamlit, while exposing users of the application to information about a variety of machine learning models. Through this application, a user is able to examine how different models perform, either on imported data or sample data. With this, they are able to test how changes to hyperparamters effect the performance of these machine learning models.
+
+**Skills:** Python, Streamlit, Matplotlib | Machine Learning
+
+**Preview:** Here is an example of the interface of this application for the user, using the Iris dataset that is provided as a sample option that a user could choose.
+
+(Need to put picture here)
 
 
