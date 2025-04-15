@@ -1,3 +1,6 @@
+
+#Import all necessary libraries 
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,6 +16,7 @@ from sklearn.metrics import (
 )
 from sklearn.datasets import load_iris, load_diabetes
 
+#Create the title and set page configuratuons
 st.set_page_config(page_title="ML App", layout="wide")
 st.title("🤖 Interactive Machine Learning App")
 
@@ -20,6 +24,7 @@ st.title("🤖 Interactive Machine Learning App")
 st.sidebar.title("🛠️ Settings")
 data_source = st.sidebar.radio("📂 Choose your data source", ["Upload your own", "Use a sample dataset"])
 
+#conditional statment that checks if the user wants to upload their own dataset or use a sample dataset
 if data_source == "Upload your own":
     uploaded_file = st.sidebar.file_uploader("📄 Upload your CSV dataset", type=["csv"])
     if uploaded_file is not None:
@@ -46,7 +51,7 @@ if 'df' in locals():
     # Display dataset preview
     st.subheader("📊 Dataset Preview")
     st.dataframe(df.head())
-
+    #task selections
     task = st.sidebar.radio("📌 Task", ["Classification", "Regression"])
     target_column = st.sidebar.selectbox("🎯 Select Target Column", df.columns)
 
@@ -76,7 +81,7 @@ if 'df' in locals():
 
         st.sidebar.markdown("### 🤖 Model Selection")
 
-        # Model Selection
+        # Model Selection, conditional statement based on type of regression 
         if task == "Classification":
             model_name = st.sidebar.selectbox("Choose Classifier", ["Logistic Regression", "Decision Tree", "K Nearest Neighbors"])
 
@@ -108,14 +113,14 @@ if 'df' in locals():
             elif model_name == "K Nearest Neighbors":
                 n_neighbors = st.sidebar.slider("Number of Neighbors", 1, 20, 5, key="reg_knn_k")
                 model = KNeighborsRegressor(n_neighbors=n_neighbors)
-
+        #Training model button development
         if st.sidebar.button("🚀 Train Model"):
             model.fit(X_train, y_train)
             predictions = model.predict(X_test)
 
             st.markdown("## 🧪 Results")
             tabs = st.tabs(["📈 Evaluation", "📊 Confusion Matrix", "🔍 ROC / PR Curve", "💡 Feature / Residuals"])
-
+          #Model evaluation tabs  
             with tabs[0]:
                 st.subheader("📈 Model Evaluation")
                 st.markdown("""
