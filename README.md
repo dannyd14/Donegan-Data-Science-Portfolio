@@ -33,7 +33,7 @@ This page works to showcase the projects that I have completed, while also displ
 
 ## Streamlit Machine Learning App
 
-**Description:** The Machine Learning Application project explores the many capabilities of streamlit, while exposing users of the application to information about a variety of machine learning models. Through this application, a user is able to examine how different models perform, either on imported data or sample data. With this, they are able to test how changes to hyperparamters effect the performance of these machine learning models.
+**Description:** The Machine Learning Application project explores the many capabilities of streamlit, while exposing users of the application to information about a variety of machine learning models. Through this application, a user is able to examine how different models perform, either on imported data or sample data. With this, they are able to test how changes to hyperparamters effect the performance of these machine learning models. This application displays my skills, primarily in the development of a variety of machine learning models through python. Also, this project displays the utilization of streamlit's tools and widgets to develop an interactive app for a user. 
 
 **Skills:** Python, Streamlit, Matplotlib | Machine Learning
 

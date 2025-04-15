@@ -7,8 +7,11 @@ After choosing to either import their own data or use sample data, within this a
 ## App Features
 Within this app, users have the ability to test out a variety of differen machine learning models, either on their own dataset, or using a sample dataset. This exploration could include choosing a target variable, training a model, viewing how the model performed by examining peformance statistics and visualizations that describe how the model performs. Model types include linear regression, logistic regression, decision tree, as well as k-nearest neighbors. Also, the user has the ability to adjust the hyperparamters that drive these models, making the application even more customizable. Each model has its own set of hyperparameters, and they are shown as a slider within this app. After training the model, the user can click through different tabs of the results and visualizations, with descriptions of the different metrics given. 
 
+
+
+
 ## Instructions for App Usage
-1. Open the either through the Streamlit Community Cloud or via a URL
+1. Open the either through the Streamlit Community Cloud or via a URL. If using the app locally, type 'streamlit run MLStreamlitApp/Streamlit-App.py' in the terminal of the Streamlit-App.py file
 2. Choose whether you would like to insert your own data set, or view a sample
 3. Considering the type of data being used, pick either Classification or Regression
 4. Select your target column that will be used for this model
