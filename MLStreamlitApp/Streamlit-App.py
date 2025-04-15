@@ -21,7 +21,7 @@ st.sidebar.title("🛠️ Settings")
 data_source = st.sidebar.radio("📂 Choose your data source", ["Upload your own", "Use a sample dataset"])
 
 if data_source == "Upload your own":
-    uploaded_file = st.sidebar.file_uploader("📤 Upload your CSV dataset", type=["csv"])
+    uploaded_file = st.sidebar.file_uploader("📄 Upload your CSV dataset", type=["csv"])
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
 else:
@@ -45,7 +45,7 @@ if 'df' in locals():
 
     # Display dataset preview
     st.subheader("📊 Dataset Preview")
-    st.dataframe(df.head())  # Display the first 5 rows of the dataset
+    st.dataframe(df.head())
 
     task = st.sidebar.radio("📌 Task", ["Classification", "Regression"])
     target_column = st.sidebar.selectbox("🎯 Select Target Column", df.columns)
@@ -118,6 +118,13 @@ if 'df' in locals():
 
             with tabs[0]:
                 st.subheader("📈 Model Evaluation")
+                st.markdown("""
+                **What you're seeing:**  
+                These are key performance metrics for your model.  
+                - **Accuracy** tells you what percentage of predictions were correct (for classification).  
+                - **Mean Squared Error (MSE)** measures average squared difference between actual and predicted values (for regression).  
+                - **R² Score** explains how much of the variability in the data the model accounts for.
+                """)
                 if task == "Classification":
                     acc = accuracy_score(y_test, predictions)
                     st.write(f"**Accuracy:** {acc:.2f}")
@@ -132,6 +139,13 @@ if 'df' in locals():
             with tabs[1]:
                 if task == "Classification":
                     st.subheader("📊 Confusion Matrix")
+                    st.markdown("""
+                    **What you're seeing:**  
+                    This confusion matrix shows how well your model is classifying outcomes.  
+                    - Rows represent the actual classes.  
+                    - Columns represent the predicted classes.  
+                    - Diagonal values are correct predictions; off-diagonal values are mistakes.
+                    """)
                     cm = confusion_matrix(y_test, predictions)
                     fig, ax = plt.subplots()
                     sns.heatmap(cm, annot=True, fmt='d', cmap="Blues", ax=ax)
@@ -143,6 +157,18 @@ if 'df' in locals():
 
             with tabs[2]:
                 if task == "Classification" and len(y_test.unique()) == 2:
+                    st.markdown("""
+                    **What you're seeing:**  
+                    These curves help evaluate how well your model distinguishes between the two classes (binary classification only).  
+
+                    - **ROC Curve (Receiver Operating Characteristic):**  
+                      Plots True Positive Rate vs. False Positive Rate. The closer the curve is to the top-left, the better.  
+                      AUC (Area Under Curve) summarizes this performance.
+
+                    - **Precision-Recall Curve:**  
+                      Plots Precision vs. Recall, especially useful for imbalanced datasets.  
+                      Average Precision gives a single-number summary of model performance.
+                    """)
                     if hasattr(model, "predict_proba"):
                         y_proba = model.predict_proba(X_test)[:, 1]
                     else:
@@ -176,6 +202,11 @@ if 'df' in locals():
             with tabs[3]:
                 if task == "Classification" and hasattr(model, "feature_importances_"):
                     st.subheader("💡 Feature Importance")
+                    st.markdown("""
+                    **What you're seeing:**  
+                    This bar chart shows which features were most important for the model’s decisions (tree-based models only).  
+                    Larger bars mean the feature had more influence on the predictions.
+                    """)
                     importance = model.feature_importances_
                     sorted_idx = importance.argsort()
                     fig, ax = plt.subplots()
@@ -184,6 +215,12 @@ if 'df' in locals():
                     st.pyplot(fig)
                 elif task == "Regression":
                     st.subheader("📉 Residual Plot")
+                    st.markdown("""
+                    **What you're seeing:**  
+                    This residual plot shows the difference between actual and predicted values.  
+                    - Residuals should ideally be randomly scattered around zero.  
+                    - Patterns might indicate issues like non-linearity or heteroscedasticity.
+                    """)
                     residuals = y_test - predictions
                     fig, ax = plt.subplots()
                     ax.scatter(predictions, residuals)
@@ -195,4 +232,7 @@ if 'df' in locals():
                 else:
                     st.info("Feature importance only applies to tree-based classifiers.")
 else:
-    st.info("📤 Upload a CSV file or use a sample dataset to get started.")
+    st.info("📄 Upload a CSV file or use a sample dataset to get started.")
+
+#To run the app, type `streamlit run MLStreamlitApp/Streamlit-App.py` in the terminal.
+
