@@ -39,6 +39,6 @@ This page works to showcase the projects that I have completed, while also displ
 
 **Preview:** Here is an example of the interface of this application for the user, using the Iris dataset that is provided as a sample option that a user could choose.
 
-(Need to put picture here)
+![](<Screen Shot 2025-04-14 at 9.56.19 PM.png>)
 
 
