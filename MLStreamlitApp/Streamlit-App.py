@@ -1,6 +1,4 @@
-
-#Import all necessary libraries 
-
+# Import all necessary libraries 
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,7 +14,7 @@ from sklearn.metrics import (
 )
 from sklearn.datasets import load_iris, load_diabetes
 
-#Create the title and set page configuratuons
+# Create the title and set page configurations
 st.set_page_config(page_title="ML App", layout="wide")
 st.title("🤖 Interactive Machine Learning App")
 
@@ -24,7 +22,7 @@ st.title("🤖 Interactive Machine Learning App")
 st.sidebar.title("🛠️ Settings")
 data_source = st.sidebar.radio("📂 Choose your data source", ["Upload your own", "Use a sample dataset"])
 
-#conditional statment that checks if the user wants to upload their own dataset or use a sample dataset
+# Load dataset
 if data_source == "Upload your own":
     uploaded_file = st.sidebar.file_uploader("📄 Upload your CSV dataset", type=["csv"])
     if uploaded_file is not None:
@@ -51,37 +49,49 @@ if 'df' in locals():
     # Display dataset preview
     st.subheader("📊 Dataset Preview")
     st.dataframe(df.head())
-    #task selections
+
+    # Task selections
     task = st.sidebar.radio("📌 Task", ["Classification", "Regression"])
     target_column = st.sidebar.selectbox("🎯 Select Target Column", df.columns)
 
     numeric_columns = df.select_dtypes(include=['number']).columns.tolist()
-    feature_columns = [col for col in numeric_columns if col != target_column]
+    default_features = [col for col in numeric_columns if col != target_column]
+
+    selected_features = st.sidebar.multiselect(
+        "🧮 Select Feature Columns",
+        options=default_features,
+        default=default_features
+    )
 
     valid_data = False
 
-    if task == "Classification":
-        if df[target_column].dtype != 'object' and df[target_column].nunique() > 20:
-            st.warning("⚠️ Target seems continuous — consider Regression.")
-        else:
-            y = df[target_column].astype('category').cat.codes
-            X = df[feature_columns]
-            valid_data = True
+    if not selected_features:
+        st.error("❌ Please select at least one feature column.")
+    else:
+        feature_columns = selected_features
 
-    elif task == "Regression":
-        if df[target_column].dtype in ['int64', 'float64']:
-            y = df[target_column]
-            X = df[feature_columns]
-            valid_data = True
-        else:
-            st.error("❌ Target must be numeric for regression.")
+        if task == "Classification":
+            if df[target_column].dtype != 'object' and df[target_column].nunique() > 20:
+                st.warning("⚠️ Target seems continuous — consider Regression.")
+            else:
+                y = df[target_column].astype('category').cat.codes
+                X = df[feature_columns]
+                valid_data = True
+
+        elif task == "Regression":
+            if df[target_column].dtype in ['int64', 'float64']:
+                y = df[target_column]
+                X = df[feature_columns]
+                valid_data = True
+            else:
+                st.error("❌ Target must be numeric for regression.")
 
     if valid_data:
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
         st.sidebar.markdown("### 🤖 Model Selection")
 
-        # Model Selection, conditional statement based on type of regression 
+        # Model Selection
         if task == "Classification":
             model_name = st.sidebar.selectbox("Choose Classifier", ["Logistic Regression", "Decision Tree", "K Nearest Neighbors"])
 
@@ -113,14 +123,15 @@ if 'df' in locals():
             elif model_name == "K Nearest Neighbors":
                 n_neighbors = st.sidebar.slider("Number of Neighbors", 1, 20, 5, key="reg_knn_k")
                 model = KNeighborsRegressor(n_neighbors=n_neighbors)
-        #Training model button development
+
+        # Training model button
         if st.sidebar.button("🚀 Train Model"):
             model.fit(X_train, y_train)
             predictions = model.predict(X_test)
 
             st.markdown("## 🧪 Results")
             tabs = st.tabs(["📈 Evaluation", "📊 Confusion Matrix", "🔍 ROC / PR Curve", "💡 Feature / Residuals"])
-          #Model evaluation tabs  
+
             with tabs[0]:
                 st.subheader("📈 Model Evaluation")
                 st.markdown("""
@@ -239,5 +250,4 @@ if 'df' in locals():
 else:
     st.info("📄 Upload a CSV file or use a sample dataset to get started.")
 
-#To run the app, type `streamlit run MLStreamlitApp/Streamlit-App.py` in the terminal.
-
+# To run the app: streamlit run your_file_name.py
