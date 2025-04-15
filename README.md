@@ -5,7 +5,8 @@ This page works to showcase the projects that I have completed, while also displ
 
 ## Projects
 
-## Streamlit App
+## Streamlit App - [Link](https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/basic-streamlit-app)
+
 
 **Description:** Through this project, I took advantage of both python and streamlit libraries in order to create a simple app, that would allow users to explore and filter through data. This app features charts and graphs that allow users to better understand the data they are viewing, and thus learn more about the dataset. Through this project, I was able to showcase my ability to create an application that makes a data-script much more user-friendly, and also applicable for questions that users may have about the data.
 
@@ -20,7 +21,7 @@ This page works to showcase the projects that I have completed, while also displ
 
 
 
-## Tidy Data Project
+## Tidy Data Project - [Link] (https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/TidyData-Project)
 
 **Description:** The Tidy Data project focuses on the importance of cleaning and organizing data so that one can effectively evaluate, model, and visualize data. Through this project, I took a data set that was previously messy and attained the three features of a tidy dataset. The three key features of tidyness are that each observation has its own row, each variable has its own column, and each observational set forms a table. Using the pandas library as well as other cleaning techniques, I was able to obtain a clean dataset, and then create visualizations from this clean data.
 
@@ -31,7 +32,7 @@ This page works to showcase the projects that I have completed, while also displ
 ![](<TidyData-Project/Screen Shot 2025-03-17 at 9.43.41 PM.png>)
 
 
-## Streamlit Machine Learning App
+## Streamlit Machine Learning App - [Link](https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/MLStreamlitApp)
 
 **Description:** The Machine Learning Application project explores the many capabilities of streamlit, while exposing users of the application to information about a variety of machine learning models. Through this application, a user is able to examine how different models perform, either on imported data or sample data. With this, they are able to test how changes to hyperparamters effect the performance of these machine learning models. This application displays my skills, primarily in the development of a variety of machine learning models through python. Also, this project displays the utilization of streamlit's tools and widgets to develop an interactive app for a user. 
 

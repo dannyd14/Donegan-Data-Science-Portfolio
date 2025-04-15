@@ -10,8 +10,8 @@ Within this app, users have the ability to test out a variety of differen machin
 
 
 
-## Instructions for App Usage
-1. Open the either through the Streamlit Community Cloud or via a URL. If using the app locally, type 'streamlit run MLStreamlitApp/Streamlit-App.py' in the terminal of the Streamlit-App.py file
+## Instructions for App Usage - [Link to Deployed Version](https://dannyd14-donegan-data-scienc-mlstreamlitappstreamlit-app-v3tugj.streamlit.app/)
+1. Open the either through the Streamlit Community Cloud or via a URL. If using the app locally, type 'streamlit run MLStreamlitApp/Streamlit-App.py' in the terminal of the Streamlit-App.py file. If running locally, necessary libraries include: streamlit, pandas, numpy, scikit-learn, matplotlib, seaborn
 2. Choose whether you would like to insert your own data set, or view a sample
 3. Considering the type of data being used, pick either Classification or Regression
 4. Select your target column that will be used for this model
