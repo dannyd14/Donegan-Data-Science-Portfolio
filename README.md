@@ -21,7 +21,7 @@ This page works to showcase the projects that I have completed, while also displ
 
 
 
-## Tidy Data Project - [Link] (https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/TidyData-Project)
+## Tidy Data Project - [Link](https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/TidyData-Project)
 
 **Description:** The Tidy Data project focuses on the importance of cleaning and organizing data so that one can effectively evaluate, model, and visualize data. Through this project, I took a data set that was previously messy and attained the three features of a tidy dataset. The three key features of tidyness are that each observation has its own row, each variable has its own column, and each observational set forms a table. Using the pandas library as well as other cleaning techniques, I was able to obtain a clean dataset, and then create visualizations from this clean data.
 
