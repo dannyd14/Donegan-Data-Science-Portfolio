@@ -130,7 +130,7 @@ if df is not None:
                     X_2d = pca_vis.fit_transform(X)
 
                     st.markdown("### 📉 Cluster Visualization (PCA Projection)")
-                    st.markdown("This plot shows how the clusters form in 2D space after PCA reduction. Points with the same color belong to the same cluster.")
+                    st.markdown("This plot shows how the clusters form in 2D space after PCA reduction. Because of the potential use of multiple features, PCA reduction has been applied here to allow the scatterplot to be visualized in 2D. This graph can be used to see how effective these clustering methods were in assigning points to clusters. Points with the same color belong to the same cluster, and the distance between points indicates how similar they are to each other. The clustering methods perform well when the clusters are clearly separated from each other and all points that are close to each other are the same color.")
                     fig, ax = plt.subplots()
                     scatter = ax.scatter(X_2d[:, 0], X_2d[:, 1], c=cluster_labels, cmap="tab10", alpha=0.7)
                     ax.set_xlabel("PC 1")
@@ -141,14 +141,14 @@ if df is not None:
                     st.markdown("### 📈 Clustering Metrics")
                     if len(set(cluster_labels)) > 1:
                         score = silhouette_score(X, cluster_labels)
-                        st.markdown("**Silhouette Score**: Measures how similar each point is to its own cluster vs. other clusters. Values closer to 1 indicate better clustering.")
+                        st.markdown("**Silhouette Score**: Measures how similar each point is to its own cluster vs. other clusters. This value gives you a general estimation for how well the clustering method worked. Values that are close to 1 imply that data points are well separated into different clusters. Values around 0 imply that clusters are overlapping or ambiguous. Negative values imply that points are in the wrong clusters. The silhouette score can be used to determine which hyperparamters perform the best.")
                         st.write(f"**Silhouette Score:** {score:.3f}")
                     else:
                         st.warning("Only one cluster found — silhouette score not applicable.")
 
                     if model_type == "hierarchical":
                         st.markdown("### 🌳 Dendrogram")
-                        st.markdown("A dendrogram illustrates the hierarchy of clusters created during agglomerative clustering. Cutting the tree at a specific level gives you your clusters.")
+                        st.markdown("A dendrogram illustrates the hierarchy of clusters created during agglomerative clustering. Cutting the tree at a specific level gives you your clusters. Within this graph, the x-axis represents the sample index, and the y-axis represents the distance between clusters. The height of the lines in the dendrogram indicates how far apart the clusters are. The higher the line, the more dissimilar the clusters are. The dendrogram can be used to determine how many clusters to use by cutting the tree at a certain height. Also, clusters are separated by color, though depending on the size of the idex, some of these clusters may be difficult to see visually.")
                         Z = linkage(X, method=st.session_state["linkage_method"])
                         fig, ax = plt.subplots(figsize=(10, 5))
                         dendrogram(Z, ax=ax)
@@ -159,7 +159,7 @@ if df is not None:
 
                     elif model_type == "kmeans":
                         st.markdown("### 📐 Elbow Plot")
-                        st.markdown("The elbow plot shows how the within-cluster sum of squares (inertia) decreases with increasing number of clusters. The 'elbow' point helps choose the optimal number.")
+                        st.markdown("The elbow plot shows how the within-cluster sum of squares (inertia) decreases with increasing number of clusters. The 'elbow' point helps choose the optimal number, where this point is typically where the direction of the graph sees a distinct change. By applying the number of clusters at the elbow point, we are able to find a balance of minimzing the inertia and maximizing the number of clusters. At the elbow point, the intertia no longer improves rapidly with increasing number of clusters.")
                         inertia = []
                         K = range(1, 11)
                         for k in K:
