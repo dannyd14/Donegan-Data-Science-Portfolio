@@ -114,12 +114,24 @@ if df is not None:
                 if model_type == "pca":
                     X_transformed = model.fit_transform(X)
                     st.markdown("### 🎨 PCA Projection")
-                    st.markdown("This scatter plot displays the data projected onto the first two principal components. It helps visualize the structure of high-dimensional data in two dimensions.")
+                    st.markdown("This scatter plot displays the data projected onto the first two principal components. It helps visualize the structure of high-dimensional data in two dimensions. Because PCA is a dimensionality reduction method and not a clustering method, the goal of this process is to make the data easier to visualize, not classify into groups. Here, we are able to visualize the data using the first two PCA components, as otherwise if the data has more than 2 or 3 dimensions, it would be difficult to visualize. Also, it is important to note that the first PCA component accounts for the most variability in the data, followed by the second and decreasing from there.")
                     fig, ax = plt.subplots()
                     ax.scatter(X_transformed[:, 0], X_transformed[:, 1], alpha=0.7)
                     ax.set_xlabel("PC 1")
                     ax.set_ylabel("PC 2")
                     ax.set_title("PCA - First Two Components")
+                    st.pyplot(fig)
+
+                    st.markdown("### 📊 Scree Plot")
+                    st.markdown("The scree plot shows the proportion of the dataset's variance explained by each principal component. A sharp decline (elbow) in the plot suggests a good cutoff for the number of components to keep. This helps determine how many components are sufficient to retain most of the original information.")
+
+                    explained_var = model.explained_variance_ratio_
+                    fig, ax = plt.subplots()
+                    ax.plot(range(1, len(explained_var) + 1), explained_var, marker='o', linestyle='-')
+                    ax.set_title("Scree Plot")
+                    ax.set_xlabel("Principal Component")
+                    ax.set_ylabel("Explained Variance Ratio")
+                    ax.grid(True)
                     st.pyplot(fig)
 
                 else:
