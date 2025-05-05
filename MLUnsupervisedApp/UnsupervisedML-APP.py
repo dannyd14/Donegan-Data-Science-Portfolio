@@ -46,11 +46,12 @@ st.title("🧠 Unsupervised ML Explorer")
 st.markdown("### 🤖 About the Models")
 st.info(
     """
-**K-Means Clustering**: Partitions the data into K distinct clusters by minimizing the variance within each cluster. Great for when you expect natural groupings in your data.
+**K-Means Clustering**: K-Means Clustering is a method of Unsupervised Machine Learning used to group the data into k pre-selected groups based on the features that are being applied. The goal of this method is to minimize the variance within each cluster, and match each data point with the group that it fits best in. This method is fast and scalable, especially with large datasets, and works best when the clusters are evenly sized and spherical in shape.
 
-**Hierarchical Clustering**: Builds a tree-like structure of clusters using a bottom-up approach (agglomerative). Useful for identifying nested groupings.
+**Hierarchical Clustering**: Hierarchical clustering is an unsupervised learning algorithm that builds a hierarchy (tree) of clusters. Instead of specifying the number of clusters in advance, it shows how clusters are formed at different levels of similarity, allowing you to decide where to “cut” the tree. Most commonly, the agglomerative approach is used, where you start with each point as its own cluster, and then merge the two closest clusters at each step and repeat until all points have a cluster. There are 4 main type of linkage methods. Ward minimizes the variance within clusters, single minimizes the distance between the closest points in two clusters, complete maximizes the distance between the furthest points in two clusters, and average minimizes the average distance between all points in two clusters.
 
-**Principal Component Analysis (PCA)**: A dimensionality reduction technique that transforms your data into principal components to reveal structure and patterns in fewer dimensions.
+
+**Principal Component Analysis (PCA)**: PCA is a dimensionality reduction technique used in unsupervised learning. It transforms a dataset with potentially many correlated features into a smaller set of uncorrelated features called principal components, while retaining as much of the data's variability as possible. Typically, PCA is used to visualize high dimensional data in 2D or 3D, remove redundancy within the features, speed up learning algorithms, or identify patterns within the data.
 """
 )
 
