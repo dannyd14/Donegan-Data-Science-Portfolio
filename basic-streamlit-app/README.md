@@ -16,4 +16,4 @@ To use this app, one should run the code using the streamlit run function, follo
 
 
 ## Example of Application
-[](README.md)
+![](<../Screen Shot 2025-03-17 at 10.05.48 PM.png>)

@@ -27,4 +27,4 @@ Here is some other resources that could be used to learn more about unsupervised
 [Unsupervised Machine Learning Basics](MLUnsupervisedApp/UnsupervisedMachineLearning.pdf)
 
 ## Example of Application
-![](MLUnsupervisedApp/Screen Shot 2025-05-05 at 8.20.15 PM.png)
+![](<Screen Shot 2025-05-05 at 8.20.15 PM.png>)
