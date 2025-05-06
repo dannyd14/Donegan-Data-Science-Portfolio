@@ -3,7 +3,7 @@ I am currently a Junior at the University of Notre Dame studying Applied and Com
 
 This page works to showcase the projects that I have completed, while also displaying my data science skills, specificially in regards to predictive modeling, data visualization, as well as other types of data science projects.
 
-## At a Glance
+## Projects At a Glance
 
 ## Streamlit App - [Link](https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/basic-streamlit-app)
 
