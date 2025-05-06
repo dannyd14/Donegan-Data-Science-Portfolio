@@ -1,4 +1,4 @@
-## Machine Learning Streamlit Exploratory Application
+## Supervised Machine Learning Streamlit Exploratory Application
 This project will be an example of how to create an exploratory Machine Learning app using streamlit and its capabilities. While navigating this application, a user will be able to explore how different machine learning models operate and perform, either on their own data or with provided sample data.
 
 ## Project Overview

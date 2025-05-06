@@ -187,3 +187,6 @@ if df is not None:
         st.warning("⚠️ Please select at least one numeric feature.") #Warning message if no features are selected
 else:
     st.info("Upload or select a dataset to begin.") #Info message if no dataset is selected
+
+
+##To run the app locally, type 'streamlit run MLUnsupervisedApp/UnsupervisedML-APP.py' in the terminal
