@@ -3,7 +3,7 @@ I am currently a Junior at the University of Notre Dame studying Applied and Com
 
 This page works to showcase the projects that I have completed, while also displaying my data science skills, specificially in regards to predictive modeling, data visualization, as well as other types of data science projects.
 
-## Projects
+## At a Glance
 
 ## Streamlit App - [Link](https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/basic-streamlit-app)
 
@@ -43,3 +43,12 @@ This page works to showcase the projects that I have completed, while also displ
 ![](<Screen Shot 2025-04-14 at 9.56.19 PM.png>)
 
 
+## Streamlit Unsupervised Machine Learning App - [Link](https://github.com/dannyd14/Donegan-Data-Science-Portfolio/tree/main/MLUnsupervisedApp)
+
+**Description:** The Unsupervised Machine Learning Streamlit App allows users to explore how different Unsupervised Machine Learning methods operate, including K-Means Clustering, Hieracrhial Clustering, and dimension reduction through PCA. Users are able to choose to either use their own dataset or use a sample provided by the application, and then from there choose features of interests and adjust hyperparameters before training the model. At this point, they are then able to view the results and investigate which types of models performed better. This project allowed me to further develop my skills using streamlit's libraries in python, while also expanding my knowledge about Unsupervised Machine Learning.
+
+**Skills:** Python, Streamlit, Matplotlib | Machine Learning
+
+**Preview:** Here is an example of the interface of this application for the user, using the Wine dataset that is provided as a sample option that a user could choose.
+
+![](<Screen Shot 2025-05-05 at 9.25.51 PM.png>)

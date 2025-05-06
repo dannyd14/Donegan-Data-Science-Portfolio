@@ -11,7 +11,7 @@ Within this app, users have the ability to test out a variety of differen unsupe
 
 
 
-## Instructions for App Usage - [Link to Deployed Version](https://dannyd14-donegan-data-scienc-mlstreamlitappstreamlit-app-v3tugj.streamlit.app/)
+## Instructions for App Usage - [Link to Deployed Version](NEED TO ADD LINK ONCE DEPLOYED)
 1. Open the either through the Streamlit Community Cloud or via a URL. If using the app locally, type 'streamlit run MLStreamlitApp/Streamlit-App.py' in the terminal of the Streamlit-App.py file. If running locally, necessary libraries include: streamlit, pandas, numpy, sklearn, matplotlib, scipy
 2. Choose whether you would like to insert your own data set, or view a sample
 3. Select which features will be included in this model
