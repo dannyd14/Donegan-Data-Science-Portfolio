@@ -155,7 +155,7 @@ if df is not None:
                     else:
                         st.warning("Only one cluster found — silhouette score not applicable.") #warning
 
-                    if model_type == "hierarchial": #If the user selects Hierarchical Clustering
+                    if model_type == "Hierarchical": #If the user selects Hierarchical Clustering
                         st.markdown("### 🌳 Dendrogram") 
                         st.markdown("A dendrogram illustrates the hierarchy of clusters created during agglomerative clustering. Cutting the tree at a specific level gives you your clusters. Within this graph, the x-axis represents the sample index, and the y-axis represents the distance between clusters. The height of the lines in the dendrogram indicates how far apart the clusters are. The higher the line, the more dissimilar the clusters are. The dendrogram can be used to determine how many clusters to use by cutting the tree at a certain height. Also, clusters are separated by color, though depending on the size of the idex, some of these clusters may be difficult to see visually.")
                         Z = linkage(X, method=st.session_state["linkage_method"]) #Perform hierarchical clustering
