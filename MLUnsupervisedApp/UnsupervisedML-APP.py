@@ -109,7 +109,7 @@ if df is not None:
                 model = st.session_state["model"] #Get the model from the session state
                 X = st.session_state["X"] #Get the selected features from the session state
 
-                if model_type == "pca":  #If the user selects PCA
+                if model_type == "PCA":  #If the user selects PCA
                     X_transformed = model.fit_transform(X) #Transform the data using PCA
                     st.markdown("### 🎨 PCA Projection")
                     st.markdown("This scatter plot displays the data projected onto the first two principal components. It helps visualize the structure of high-dimensional data in two dimensions. Because PCA is a dimensionality reduction method and not a clustering method, the goal of this process is to make the data easier to visualize, not classify into groups. Here, we are able to visualize the data using the first two PCA components, as otherwise if the data has more than 2 or 3 dimensions, it would be difficult to visualize. Also, it is important to note that the first PCA component accounts for the most variability in the data, followed by the second and decreasing from there.")
@@ -166,7 +166,7 @@ if df is not None:
                         ax.set_ylabel("Distance")
                         st.pyplot(fig)
 
-                    elif model_type == "kmeans":  #If the user selects K-Means Clustering
+                    elif model_type == "K-Means Clustering":  #If the user selects K-Means Clustering
                         st.markdown("### 📐 Elbow Plot") #title
                         st.markdown("The elbow plot shows how the within-cluster sum of squares (inertia) decreases with increasing number of clusters. The 'elbow' point helps choose the optimal number, where this point is typically where the direction of the graph sees a distinct change. By applying the number of clusters at the elbow point, we are able to find a balance of minimzing the inertia and maximizing the number of clusters. At the elbow point, the intertia no longer improves rapidly with increasing number of clusters.")
                         inertia = [] #List to store inertia values
