@@ -94,7 +94,7 @@ if df is not None:
             n_clusters = st.sidebar.slider("Number of clusters", 2, 10, 3) #Slider to select the number of clusters
             linkage_method = st.sidebar.selectbox("Linkage method", ["ward", "complete", "average", "single"]) #Select box for linkage method
             model = AgglomerativeClustering(n_clusters=n_clusters, linkage=linkage_method) #Create the AgglomerativeClustering model
-            st.session_state['model_type'] = 'hierarchial'
+            st.session_state['model_type'] = 'hierarchical'
             st.session_state["linkage_method"] = linkage_method #Store the linkage method in the session state
 
         elif model_type == "PCA": #If the user selects PCA
