@@ -69,13 +69,15 @@ if df is not None:  # If a dataset is loaded
 
     # --- Sidebar: Feature Selection ---
     st.sidebar.subheader("Feature Selection")  # Feature selection
-    numeric_cols = df.select_dtypes(include=["float64", "int64"]).columns.tolist()  # Select numeric columns
-    categorical_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()  # Select categorical columns
+    all_cols = df.columns.tolist()  # Get all columns
 
-    selected_features = st.sidebar.multiselect("Select features", numeric_cols + categorical_cols, default=numeric_cols)  # Multiselect to select features
+    selected_features = st.sidebar.multiselect("Select features", all_cols, default= all_cols)  # Multiselect to select features
     if selected_features:
         # Apply one-hot encoding to categorical columns
-        df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
+        categorical_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
+        categorical_cols_selected = [col for col in categorical_cols if col in selected_features] 
+       
+        df_encoded = pd.get_dummies(df, columns= categorical_cols_selected, drop_first=True)
         X = df_encoded[selected_features].values  # Convert the selected features to a numpy array
         st.session_state["X"] = X  # Store the selected features in the session state
         st.session_state["feature_names"] = selected_features  # Store the feature names in the session state
