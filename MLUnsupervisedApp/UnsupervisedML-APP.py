@@ -90,7 +90,7 @@ if df is not None:
     
         # Step 4: Handle missing values (NaNs) after coercion
         # Here we will replace NaNs with 0. You could also use other strategies (mean, median imputation, etc.)
-        selected_data = selected_data.fillna(0)
+        selected_data = selected_data.dropna()  # Drop rows with NaN values (you can also use fillna() to fill them with a specific value)
     
     # Step 5: Check again for any remaining non-numeric values (shouldn't be any now)
         if not selected_data.select_dtypes(exclude=[np.number]).empty:
