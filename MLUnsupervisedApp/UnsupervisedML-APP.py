@@ -109,42 +109,65 @@ if df is not None:
                 model = st.session_state["model"]  # Get the model from the session state
                 X = st.session_state["X"]  # Get the selected features from the session state
 
-                if model_type == "pca":  # If the user selects PCA
-                    X_transformed = model.fit_transform(X)  # Transform the data using PCA
+                if model_type == "kmeans":  # If the user selects K-Means
+                    # Elbow plot for K-Means
+                    st.markdown("### 🏅 Elbow Method for Optimal Clusters")
+                    inertia = []
+                    for k in range(2, 11):
+                        kmeans = KMeans(n_clusters=k, random_state=42)
+                        kmeans.fit(X)
+                        inertia.append(kmeans.inertia_)
+                    fig, ax = plt.subplots()  # Create figure and axis
+                    ax.plot(range(2, 11), inertia, marker="o")  # Plot inertia vs clusters
+                    ax.set_xlabel("Number of Clusters")
+                    ax.set_ylabel("Inertia")
+                    ax.set_title("Elbow Method for Optimal K")
+                    st.pyplot(fig)  # Display elbow plot
+
+                    # Fit KMeans model
+                    cluster_labels = model.fit_predict(X)  # Fit the model and get cluster labels
+                    pca_vis = PCA(n_components=2)  # PCA for visualization
+                    X_2d = pca_vis.fit_transform(X)  # Transform to 2D
+                    st.markdown("### 📉 K-Means Clusters (PCA Projection)") 
+                    fig, ax = plt.subplots()
+                    scatter = ax.scatter(X_2d[:, 0], X_2d[:, 1], c=cluster_labels, cmap="tab10", alpha=0.7)
+                    ax.set_xlabel("PC 1")
+                    ax.set_ylabel("PC 2")
+                    ax.set_title("K-Means Clustering in 2D")
+                    st.pyplot(fig)
+
+                elif model_type == "Hierarchical Clustering":  # If the user selects Hierarchical Clustering
+                    cluster_labels = model.fit_predict(X)  # Fit the model and get cluster labels
+                    pca_vis = PCA(n_components=2)  # PCA for visualization
+                    X_2d = pca_vis.fit_transform(X)  # Transform to 2D
+
+                    st.markdown("### 📉 Hierarchical Clustering (PCA Projection)") 
+                    fig, ax = plt.subplots()  # Create figure and axis
+                    scatter = ax.scatter(X_2d[:, 0], X_2d[:, 1], c=cluster_labels, cmap="tab10", alpha=0.7)
+                    ax.set_xlabel("PC 1")
+                    ax.set_ylabel("PC 2")
+                    ax.set_title("Hierarchical Clustering in 2D")
+                    st.pyplot(fig)
+
+                    # Dendrogram for Hierarchical Clustering
+                    st.markdown("### 🌳 Dendrogram") 
+                    Z = linkage(X, method=st.session_state["linkage_method"])  # Generate linkage matrix
+                    fig, ax = plt.subplots(figsize=(10, 5))  # Create dendrogram
+                    dendrogram(Z, ax=ax)  # Plot dendrogram
+                    ax.set_title("Hierarchical Clustering Dendrogram")
+                    ax.set_xlabel("Sample Index")
+                    ax.set_ylabel("Distance")
+                    st.pyplot(fig)
+
+                elif model_type == "PCA":  # If the user selects PCA
+                    X_transformed = model.fit_transform(X)  # Fit PCA
                     st.markdown("### 🎨 PCA Projection")
-                    st.markdown("This scatter plot displays the data projected onto the first two principal components. It helps visualize the structure of high-dimensional data in two dimensions...")
-                    fig, ax = plt.subplots()  # Create a figure and axis
-                    ax.scatter(X_transformed[:, 0], X_transformed[:, 1], alpha=0.7)  # Scatter plot of the PCA transformed data
-                    ax.set_xlabel("PC 1")  # X-axis label
-                    ax.set_ylabel("PC 2")  # Y-axis label
-                    ax.set_title("PCA - First Two Components")  # Title
-                    st.pyplot(fig)  # Display the plot
-
-                else:
-                    cluster_labels = model.fit_predict(X)  # Fit the model to the data and predict the cluster labels
-
-                    # PCA for 2D visualization
-                    pca_vis = PCA(n_components=2)  # Create a PCA model for visualization
-                    X_2d = pca_vis.fit_transform(X)  # Transform the data using PCA
-
-                    st.markdown("### 📉 Cluster Visualization (PCA Projection)") 
-                    fig, ax = plt.subplots()  # Create a figure and axis
-                    scatter = ax.scatter(X_2d[:, 0], X_2d[:, 1], c=cluster_labels, cmap="tab10", alpha=0.7)  # Scatter plot of the PCA transformed data
-                    ax.set_ylabel("PC 2")  # Y-axis label
-                    ax.set_title(f"{model_type} Clusters (2D PCA)")  # Title
-                    st.pyplot(fig)  # Display the plot
-
-                    # Hierarchical Clustering: Dendrogram
-                    if model_type == "Hierarchical Clustering":
-                        st.markdown("### 🌳 Dendrogram") 
-                        st.markdown("A dendrogram illustrates the hierarchy of clusters created during agglomerative clustering...")
-                        Z = linkage(X, method=st.session_state["linkage_method"])  # Perform hierarchical clustering
-                        fig, ax = plt.subplots(figsize=(10, 5))  # Create a figure and axis for the dendrogram
-                        dendrogram(Z, ax=ax)  # Generate the dendrogram
-                        ax.set_title("Hierarchical Clustering Dendrogram")
-                        ax.set_xlabel("Sample Index")
-                        ax.set_ylabel("Distance")
-                        st.pyplot(fig)  # Display the dendrogram
+                    fig, ax = plt.subplots()
+                    ax.scatter(X_transformed[:, 0], X_transformed[:, 1], alpha=0.7)
+                    ax.set_xlabel("PC 1")
+                    ax.set_ylabel("PC 2")
+                    ax.set_title("PCA - First Two Components")
+                    st.pyplot(fig)  # Display PCA plot
 
             except Exception as e:
                 st.error(f"⚠️ Error during {model_type} training: {e}")
