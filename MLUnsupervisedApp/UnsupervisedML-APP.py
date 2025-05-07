@@ -73,7 +73,10 @@ if df is not None:
     if selected_features:
         selected_data = df[selected_features] #Get the selected features from the dataframe
         selected_data = pd.get_dummies(selected_data, drop_first = True) #Convert categorical features to dummy variables
-        
+        selected_data = selected_data.apply(pd.to_numeric, errors='coerce')  # Convert to numeric, set errors as NaN
+        selected_data = selected_data.fillna(0)
+       
+       
         X = df[selected_features].values #Convert the selected features to a numpy array
         st.session_state["X"] = X #Store the selected features in the session state
         st.session_state["feature_names"] = selected_features #Store the feature names in the session state
