@@ -155,18 +155,8 @@ if df is not None:
                     else:
                         st.warning("Only one cluster found — silhouette score not applicable.") #warning
 
-                    if model_type == "Hierarchical": #If the user selects Hierarchical Clustering
-                        st.markdown("### 🌳 Dendrogram") 
-                        st.markdown("A dendrogram illustrates the hierarchy of clusters created during agglomerative clustering. Cutting the tree at a specific level gives you your clusters. Within this graph, the x-axis represents the sample index, and the y-axis represents the distance between clusters. The height of the lines in the dendrogram indicates how far apart the clusters are. The higher the line, the more dissimilar the clusters are. The dendrogram can be used to determine how many clusters to use by cutting the tree at a certain height. Also, clusters are separated by color, though depending on the size of the idex, some of these clusters may be difficult to see visually.")
-                        Z = linkage(X, method=st.session_state["linkage_method"]) #Perform hierarchical clustering
-                        fig, ax = plt.subplots(figsize=(10, 5)) #Create a figure and axis
-                        dendrogram(Z, ax=ax) #Dendrogram
-                        ax.set_title("Hierarchical Clustering Dendrogram")
-                        ax.set_xlabel("Sample Index")
-                        ax.set_ylabel("Distance")
-                        st.pyplot(fig)
-
-                    elif model_type == "kmeans":  #If the user selects K-Means Clustering
+                    
+                    if model_type == "kmeans":  #If the user selects K-Means Clustering
                         st.markdown("### 📐 Elbow Plot") #title
                         st.markdown("The elbow plot shows how the within-cluster sum of squares (inertia) decreases with increasing number of clusters. The 'elbow' point helps choose the optimal number, where this point is typically where the direction of the graph sees a distinct change. By applying the number of clusters at the elbow point, we are able to find a balance of minimzing the inertia and maximizing the number of clusters. At the elbow point, the intertia no longer improves rapidly with increasing number of clusters.")
                         inertia = [] #List to store inertia values
@@ -181,6 +171,19 @@ if df is not None:
                         ax.set_ylabel("Inertia") #Y-axis label
                         ax.set_title("Elbow Method For Optimal K") #Title
                         st.pyplot(fig) #Display the plot
+                    
+                    elif model_type == "Hierarchical": #If the user selects Hierarchical Clustering
+                        st.markdown("### 🌳 Dendrogram") 
+                        st.markdown("A dendrogram illustrates the hierarchy of clusters created during agglomerative clustering. Cutting the tree at a specific level gives you your clusters. Within this graph, the x-axis represents the sample index, and the y-axis represents the distance between clusters. The height of the lines in the dendrogram indicates how far apart the clusters are. The higher the line, the more dissimilar the clusters are. The dendrogram can be used to determine how many clusters to use by cutting the tree at a certain height. Also, clusters are separated by color, though depending on the size of the idex, some of these clusters may be difficult to see visually.")
+                        Z = linkage(X, method=st.session_state["linkage_method"]) #Perform hierarchical clustering
+                        fig, ax = plt.subplots(figsize=(10, 5)) #Create a figure and axis
+                        dendrogram(Z, ax=ax) #Dendrogram
+                        ax.set_title("Hierarchical Clustering Dendrogram")
+                        ax.set_xlabel("Sample Index")
+                        ax.set_ylabel("Distance")
+                        st.pyplot(fig)
+
+                
 
             except Exception as e:
                 st.error(f"⚠️ Error during training or visualization: {e}") #Error message if there is an error during training or visualization
