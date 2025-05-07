@@ -65,48 +65,23 @@ if df is not None:
     st.write("**Missing values:**") #   Display the missing value
     st.dataframe(df.isnull().sum()) #Display the missing values in the dataframe
 
-# --- Sidebar: Feature Selection ---
-    st.sidebar.subheader("Feature Selection")  # Feature selection
-    all_cols = df.columns.tolist()  # Get all columns, not just numeric ones
-    selected_features = st.sidebar.multiselect("Select features", all_cols, default=all_cols)  # Allow the user to select all or some columns
-
+    # --- Sidebar: Feature Selection ---
+    st.sidebar.subheader("Feature Selection")  #Feature selection
+    all_cols = df.columns.tolist() #Get all columns in the dataframe
+    #numeric_cols = df.select_dtypes(include=["float64", "int64"]).columns.tolist() #Select numeric columns
+    selected_features = st.sidebar.multiselect("Select features", all_cols, default= all_cols) #Multiselect to select features
     if selected_features:
-        # Convert selected features into a DataFrame
-        selected_data = df[selected_features]
-    
-        # Handle non-numeric columns (e.g., categorical features)
-        # Step 1: Detect columns with non-numeric types
-        non_numeric_cols = selected_data.select_dtypes(exclude=[np.number]).columns.tolist()
-    
-        if non_numeric_cols:
-            st.warning(f"Non-numeric columns detected: {non_numeric_cols}. These will be converted to numeric using one-hot encoding.")
-    
-     # Step 2: One-hot encode categorical columns
-        selected_data = pd.get_dummies(selected_data, drop_first=True)  # One-hot encode categorical columns
-    
-        # Step 3: Ensure all data is numeric (convert if necessary)
-        # Try to convert everything to numeric, and any errors will be turned into NaN (which we will handle)
-        selected_data = selected_data.apply(pd.to_numeric, errors='coerce')
-    
-        # Step 4: Handle missing values (NaNs) after coercion
-        # Here we will replace NaNs with 0. You could also use other strategies (mean, median imputation, etc.)
-        selected_data = selected_data.dropna()  # Drop rows with NaN values (you can also use fillna() to fill them with a specific value)
-    
-    # Step 5: Check again for any remaining non-numeric values (shouldn't be any now)
-        if not selected_data.select_dtypes(exclude=[np.number]).empty:
-            st.error("There are still non-numeric columns after conversion!")
-        else:
-            st.success("Data successfully converted to numeric.")
+        selected_data = df[selected_features] #Get the selected features from the dataframe
+        selected_data = pd.get_dummies(selected_data, drop_first = True) #Convert categorical features to dummy variables
+        
+        X = df[selected_features].values #Convert the selected features to a numpy array
+        st.session_state["X"] = X #Store the selected features in the session state
+        st.session_state["feature_names"] = selected_features #Store the feature names in the session state
 
-            X = selected_data.values  # Convert the selected features to a numpy array
-            st.session_state["X"] = X  # Store the selected features in the session state
-            st.session_state["feature_names"] = selected_features  # Store the feature names in the session state
-
-
-            # --- Sidebar: Model Selection ---
-            st.sidebar.subheader("Model Selection") #Model selection
-            model_type = st.sidebar.selectbox("Unsupervised Method", ["K-Means Clustering", "Hierarchical Clustering", "PCA"]) #select box for model types
-            model = None #Initialize the model variable
+        # --- Sidebar: Model Selection ---
+        st.sidebar.subheader("Model Selection") #Model selection
+        model_type = st.sidebar.selectbox("Unsupervised Method", ["K-Means Clustering", "Hierarchical Clustering", "PCA"]) #select box for model types
+        model = None #Initialize the model variable
 
 #Use exact name values
         if model_type == "K-Means Clustering": #If the user selects K-Means Clustering
